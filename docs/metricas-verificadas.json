@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-10",
+  "python": "3.14.6",
+  "training_rows": 24000,
+  "test_rows": 6000,
+  "cross_split_identical_features": 0,
+  "metrics": {
+    "total_registros": 6000,
+    "total_sinalizados": 1380,
+    "total_nao_sinalizados": 4620,
+    "percentual_sinalizados": 23.0,
+    "probabilidade_media_percentual": 22.33,
+    "inadimplentes_reais": 1327,
+    "verdadeiros_positivos": 737,
+    "verdadeiros_negativos": 4030,
+    "falsos_positivos": 643,
+    "falsos_negativos": 590,
+    "acuracia_percentual": 79.45,
+    "precision_percentual": 53.41,
+    "recall_percentual": 55.54,
+    "f1_percentual": 54.45,
+    "roc_auc_percentual": 78.42
+  },
+  "pytest": {
+    "passed": 17,
+    "skipped_http_sandbox": 7
+  },
+  "sha256": {
+    "models\\random_forest.joblib": "8907c41b0ea0d892e5ea54833135da45e1b7d9482db8e53d7784aaf0ec850109",
+    "data\\processed\\dataset_limpo.csv": "f17c110a020762e0cd32122db698cf6b445c91594a90eb88db6aee8b82443037",
+    "data\\processed\\dataset_teste.csv": "6dd085a6423f715a13686601097fa485637518cafd19824102eadfa8829f28bc"
+  }
+}

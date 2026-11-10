@@ -1,0 +1,38 @@
+
+name: analise-inadimplencia
+
+services:
+  api-inadimplencia:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.api
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  langgraph-inadimplencia:
+    environment:
+      API_INADIMPLENCIA_URL: http://api-inadimplencia:8000/predict
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen3.5:9b}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.langgraph
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:2024:2024"
+    depends_on:
+      api-inadimplencia:
+        condition: service_healthy

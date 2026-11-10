@@ -1,0 +1,19 @@
+
+FROM python:3.14.6-slim
+
+WORKDIR /app
+
+# Dependências do agente LangGraph
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+COPY app/ /app/app/
+COPY langgraph.json /app/langgraph.json
+
+# Resultados utilizados pelo agente
+COPY data/processed/previsoes_inadimplencia.csv \
+    /app/data/processed/previsoes_inadimplencia.csv
+
+EXPOSE 2024
+
+CMD ["langgraph", "dev", "--host", "0.0.0.0", "--port", "2024", "--no-browser"]

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://langgra.ph/schema.json",
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "agente_inadimplencia": "./app/agents/agente_inadimplencia.py:agente"
+  }
+}
